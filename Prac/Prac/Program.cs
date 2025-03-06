@@ -1,3 +1,8 @@
+internal class Program
+{
+    private static async Task Main(string[] args)
+    {
+
 //1 задание
         await AsyncWork.WaitAsync(3);
 
