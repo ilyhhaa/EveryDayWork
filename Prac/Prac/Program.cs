@@ -1,4 +1,4 @@
-internal class Program
+/*internal class Program
 {
     private static async Task Main(string[] args)
     {
@@ -210,6 +210,6 @@ static class AsyncWork
         }
     }
 
-}
+}*/
 
 
