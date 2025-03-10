@@ -1,3 +1,61 @@
+public class SortedRepository<T> where T : IComparable<T>
+{
+    private List<T> items = new List<T>();
+
+    public void Add(T item)
+    {
+        items.Add(item);
+        items.Sort();
+    }
+
+    public IEnumerable<T> GetAll()
+    {
+        return items.AsReadOnly();
+    }
+
+    public T FindMax()
+    {
+        if (items.Count == 0)
+            throw new InvalidOperationException("Репозиторий пуст");
+        return items.Max();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        SortedRepository<int> intRepo = new SortedRepository<int>();
+        intRepo.Add(3);
+        intRepo.Add(1);
+        intRepo.Add(2);
+
+        var allElements = intRepo.GetAll();
+        Console.WriteLine("Элементы в репозитории чисел");
+        foreach (var item in allElements)
+        {
+            Console.WriteLine(item);
+        }
+        var maxEl = intRepo.FindMax();
+        Console.WriteLine($"Максимальный элемент в репозитории чисел: {maxEl}");
+
+        SortedRepository<string> stringRepo = new SortedRepository<string>();
+        stringRepo.Add("Banana");
+        stringRepo.Add("Apple");
+        stringRepo.Add("Cherry");
+
+        var allElementsString = stringRepo.GetAll();
+        Console.WriteLine("Элементы в репозитории строк");
+        foreach (var item in allElementsString)
+        {
+            Console.WriteLine(item);
+        }
+        var maxElString = stringRepo.FindMax();
+        Console.WriteLine($"Максимальный элемент в репозитории строк: {maxElString}");
+
+        Console.ReadLine();
+    }
+}
 
 /*public class Repository<T>
 {
