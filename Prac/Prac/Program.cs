@@ -1,3 +1,63 @@
+
+/*public class Repository<T>
+{
+    private List<T> values = new List<T>();
+
+    public void Add(T value)
+    {
+        values.Add(value);
+    }
+
+    public void Remove(T item)
+    {
+        values.Remove(item);
+    }
+
+    public IEnumerable<T> GetAll()
+    {
+        return values;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Repository<int> repositoryInt = new Repository<int>();
+        repositoryInt.Add(1);
+        repositoryInt.Add(2);
+        Console.WriteLine("Числовой репозиторий:");
+        foreach (var item in repositoryInt.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+        repositoryInt.Remove(1);
+        Console.WriteLine("После удаления:");
+        foreach (var item in repositoryInt.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+
+        Repository<string> repositoryString = new Repository<string>();
+        repositoryString.Add("Hello");
+        repositoryString.Add("World");
+        Console.WriteLine("\nСтроковый репозиторий:");
+        foreach (var item in repositoryString.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+        repositoryString.Remove("World");
+        Console.WriteLine("После удаления:");
+        foreach (var item in repositoryString.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+    }
+}*/
+
+
+
+
 /*internal class Program
 {
     private static async Task Main(string[] args)
@@ -17,7 +77,61 @@
 
         //3 задание
 
-        var three = AsyncWork.CalculateDivideAsync(5,10);
+public class Repository<T>
+{
+    private List<T> values = new List<T>();
+
+    public void Add(T value)
+    {
+        values.Add(value);
+    }
+
+    public void Remove(T item)
+    {
+        values.Remove(item);
+    }
+
+    public IEnumerable<T> GetAll()
+    {
+        return values;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Repository<int> repositoryInt = new Repository<int>();
+        repositoryInt.Add(1);
+        repositoryInt.Add(2);
+        Console.WriteLine("Числовой репозиторий:");
+        foreach (var item in repositoryInt.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+        repositoryInt.Remove(1);
+        Console.WriteLine("После удаления:");
+        foreach (var item in repositoryInt.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+
+        Repository<string> repositoryString = new Repository<string>();
+        repositoryString.Add("Hello");
+        repositoryString.Add("World");
+        Console.WriteLine("\nСтроковый репозиторий:");
+        foreach (var item in repositoryString.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+        repositoryString.Remove("World");
+        Console.WriteLine("После удаления:");
+        foreach (var item in repositoryString.GetAll())
+        {
+            Console.WriteLine($"Элемент: {item}");
+        }
+    }
+}        var three = AsyncWork.CalculateDivideAsync(5,10);
 
         Console.WriteLine(three.Result);
 
