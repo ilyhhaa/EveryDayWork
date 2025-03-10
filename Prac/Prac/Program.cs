@@ -15,7 +15,7 @@
 
     public IEnumerable<T> GetAll()
     {
-        return values;
+        return values.AsReadOnly();
     }
 }
 
