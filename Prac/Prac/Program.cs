@@ -1,3 +1,16 @@
+public static class CollectionExtensions
+{
+    public static IEnumerable<T> Filter<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+    {
+        return source.Where(predicate);
+    }
+
+    public static IEnumerable<TResult> Transform<T, TResult>(this IEnumerable<T> source, Func<T, TResult> transformer)
+    {
+        return source.Select(transformer);
+    }
+
+}
 
 public class CustomList<T> : IEnumerable<T>
 {
