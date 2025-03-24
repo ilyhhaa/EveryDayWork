@@ -1,5 +1,34 @@
+//stack
+public class Stack<T>
+{
+    protected List<T> items = new List<T>();
 
+    public void Push(T item)
+    {
 
+        items.Add(item);
+    }
+
+    public T Pop()
+    {
+        if (items.Count==0)
+        {
+            throw new InvalidOperationException();
+        }
+        var first = items.Last();
+        items.RemoveAt(items.Count-1);
+        return first;
+    }
+
+    public T Peek()
+    {
+        if (items.Count==0)
+        {
+            throw new InvalidOperationException();
+        }
+        return items.Last();
+    }
+}
 
 public class PriorityQueue<T>
 {
