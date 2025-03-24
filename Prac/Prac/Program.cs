@@ -1,3 +1,40 @@
+
+
+
+public class PriorityQueue<T>
+{
+    private List<KeyValuePair<int, T>> items = new List<KeyValuePair<int, T>>();
+
+    public void Enqueue(T item, int priority)
+    {
+        items.Add(new KeyValuePair<int, T>(priority, item));
+    }
+
+    public T Dequeue()
+    {
+        if (items.Count == 0)
+        {
+            throw new InvalidOperationException("Очередь пуста");
+        }
+
+        
+        var maxPriorityItem = items.OrderBy(x => x.Key).First();
+        items.Remove(maxPriorityItem);
+        return maxPriorityItem.Value;
+    }
+
+    public T Peek()
+    {
+        if (items.Count == 0)
+        {
+            throw new InvalidOperationException("Очередь пуста");
+        }
+
+        return items.OrderBy(x => x.Key).First().Value;
+    }
+}
+
+
 public class SortedRepository<T> where T : IComparable<T>
 {
     private List<T> items = new List<T>();
