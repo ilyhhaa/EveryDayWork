@@ -1,4 +1,83 @@
-//stack
+
+public class CustomList<T> : IEnumerable<T>
+{
+    private T[] _items;
+    private int _count;
+
+    public CustomList(int capacity = 4)
+    {
+        _items = new T[capacity];
+        _count = 0;
+    }
+
+    public void Add(T item)
+    {
+        if (_count == _items.Length)
+        {
+            Array.Resize(ref _items, _items.Length * 2);
+        }
+        _items[_count] = item;
+        _count++;
+    }
+
+    public bool Remove(T item)
+    {
+        int index = Array.IndexOf(_items, item, 0, _count);
+        if (index >= 0)
+        {
+            Array.Copy(_items, index + 1, _items, index, _count - index - 1);
+            _items[_count - 1] = default(T);
+            _count--;
+            return true;
+        }
+        return false;
+    }
+
+    public T this[int index]
+    {
+        get
+        {
+            if (index < 0 || index >= _count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            return _items[index];
+        }
+        set
+        {
+            if (index < 0 || index >= _count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            _items[index] = value;
+        }
+    }
+
+    public int Count
+    {
+        get { return _count; }
+    }
+
+    public bool Contains(T item)
+    {
+        return Array.IndexOf(_items, item, 0, _count) >= 0;
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = 0; i < _count; i++)
+        {
+            yield return _items[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
+
+
 public class Stack<T>
 {
     protected List<T> items = new List<T>();
