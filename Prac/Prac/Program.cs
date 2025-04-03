@@ -9,6 +9,16 @@ public static class CollectionExtensions
     {
         return source.Select(transformer);
     }
+    //TopN
+    public static IEnumerable<T> TopN<T>(this IEnumerable<T> source, int count, Func<T, IComparable> keySelector)
+    {
+       
+        if (source == null) throw new ArgumentNullException(nameof(source));
+        if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+        if (count < 0) throw new ArgumentOutOfRangeException(nameof(count), "Count cannot be negative");
+
+        return source.OrderByDescending(keySelector).Take(count);
+    }
 
 }
 
