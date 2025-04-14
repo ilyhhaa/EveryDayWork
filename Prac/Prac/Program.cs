@@ -1,3 +1,46 @@
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+public class MaxLengthAttribute : Attribute
+{
+    public int MaxLength { get; }
+
+    public MaxLengthAttribute(int maxLength)
+    {
+        if (maxLength <= 0)
+            throw new ArgumentException("MaxLength must be positive.", nameof(maxLength));
+        MaxLength = maxLength;
+    }
+}
+
+public class Person
+{
+    [MaxLength(5)]
+    public string Name { get; set; }
+}
+
+public static class Validator
+{
+    public static void Validate(object obj)
+    {
+        if (obj == null) throw new ArgumentNullException(nameof(obj));
+
+        var properties = obj.GetType().GetProperties();
+        foreach (var prop in properties)
+        {
+            var maxLengthAttr = prop.GetCustomAttribute<MaxLengthAttribute>();
+            if (maxLengthAttr != null && prop.PropertyType == typeof(string))
+            {
+                var value = (string)prop.GetValue(obj);
+                if (value != null && value.Length > maxLengthAttr.MaxLength)
+                {
+                    throw new InvalidOperationException(
+                        $"Property {prop.Name} exceeds max length of {maxLengthAttr.MaxLength}.");
+                }
+            }
+        }
+    }
+}
+
+
 public static class CollectionExtensions
 {
     public static IEnumerable<T> Filter<T>(this IEnumerable<T> source, Func<T, bool> predicate)
