@@ -1,3 +1,20 @@
+public static Dictionary<string, Type> GetPropertyTypes(object obj)
+{
+    if (obj == null)
+        throw new ArgumentNullException(nameof(obj));
+
+    var result = new Dictionary<string, Type>();
+    var properties = obj.GetType().GetProperties();
+
+    foreach (var prop in properties)
+    {
+        result.Add(prop.Name, prop.PropertyType);
+    }
+
+    return result;
+}
+
+
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class MaxLengthAttribute : Attribute
 {
