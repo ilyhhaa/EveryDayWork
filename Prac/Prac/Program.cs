@@ -1,3 +1,51 @@
+public static class DataProcessor
+{
+    public static async Task<int> ProcessDataAsync(string input)
+    {
+        if (input == null) throw new ArgumentNullException(nameof(input));
+        await Task.Delay(2000);
+        return input.Length;
+    }
+
+    public static async Task<string> TransformDataAsync(string input)
+    {
+        if (input == null) throw new ArgumentNullException(nameof(input));
+        await Task.Delay(3000);
+        return input.ToUpper();
+    }
+}
+/*class Program
+{
+    static async Task Main(string[] args)
+    {
+        var strings = new List<string> { "apple", "sea", "clouds" };
+        var stopwatch = Stopwatch.StartNew();
+
+        foreach (var item in strings)
+        {
+            
+            var processTask = DataProcessor.ProcessDataAsync(item);
+            var transformTask = DataProcessor.TransformDataAsync(item);
+
+            await Task.WhenAll(processTask, transformTask);
+
+            int processResult = await processTask;
+            string transformResult = await transformTask;
+
+            Console.WriteLine($"Обработка строки '{item}':");
+            Console.WriteLine($" Длина: {processResult}");
+            Console.WriteLine($"  Преобразование: {transformResult}");
+        }
+
+        stopwatch.Stop();
+        Console.WriteLine($"Общее время: {stopwatch.ElapsedMilliseconds / 1000.0:F2} секунд");
+        Console.ReadLine();
+    }
+}*/
+
+
+
+
 public static Dictionary<string, Type> GetPropertyTypes(object obj)
 {
     if (obj == null)
